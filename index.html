@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f2ff" />
+    <title>Colorful — Calculator &amp; Graphing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Colorful home">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span>colorful<span class="brand-period">.</span></span>
+        </a>
+        <div class="topbar-center">
+          <span class="live-dot"></span>
+          <span>Your little space for big ideas</span>
+        </div>
+        <div class="topbar-actions">
+          <button class="icon-button theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">☾</button>
+          <button class="icon-button help-button" aria-label="About Colorful" title="About Colorful">?</button>
+        </div>
+      </header>
+
+      <section class="workspace">
+        <aside class="calculator-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">YOUR TOOLKIT</p>
+              <h1>Calculator</h1>
+            </div>
+            <button class="mode-switch" id="scientific-toggle" aria-pressed="false">
+              <span class="switch-icon">ƒ</span>
+              <span>Scientific</span>
+              <span class="switch-track"><span></span></span>
+            </button>
+          </div>
+
+          <section class="display-card" aria-label="Calculator display">
+            <div class="display-meta">
+              <span id="angle-mode">DEG</span>
+              <span class="display-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            </div>
+            <div class="expression-display" id="expression-display" aria-live="polite"></div>
+            <div class="result-display" id="result-display" aria-live="polite">0</div>
+          </section>
+
+          <div class="scientific-keys" id="scientific-keys" aria-label="Scientific functions">
+            <button class="key key-function" data-insert="sin(">sin</button>
+            <button class="key key-function" data-insert="cos(">cos</button>
+            <button class="key key-function" data-insert="tan(">tan</button>
+            <button class="key key-function" data-insert="sqrt(">√</button>
+            <button class="key key-function" data-insert="^2">x²</button>
+            <button class="key key-function" data-insert="^">xʸ</button>
+            <button class="key key-function" data-insert="π">π</button>
+            <button class="key key-function" data-insert="log(">log</button>
+          </div>
+
+          <div class="keypad" aria-label="Calculator keypad">
+            <button class="key key-utility" data-action="clear">AC</button>
+            <button class="key key-utility" data-action="backspace" aria-label="Delete last character">⌫</button>
+            <button class="key key-utility" data-action="parentheses">( )</button>
+            <button class="key key-operator" data-insert="÷">÷</button>
+            <button class="key key-number" data-insert="7">7</button>
+            <button class="key key-number" data-insert="8">8</button>
+            <button class="key key-number" data-insert="9">9</button>
+            <button class="key key-operator" data-insert="×">×</button>
+            <button class="key key-number" data-insert="4">4</button>
+            <button class="key key-number" data-insert="5">5</button>
+            <button class="key key-number" data-insert="6">6</button>
+            <button class="key key-operator" data-insert="−">−</button>
+            <button class="key key-number" data-insert="1">1</button>
+            <button class="key key-number" data-insert="2">2</button>
+            <button class="key key-number" data-insert="3">3</button>
+            <button class="key key-operator" data-insert="+">+</button>
+            <button class="key key-number key-zero" data-insert="0">0</button>
+            <button class="key key-number" data-insert=".">.</button>
+            <button class="key key-equals" data-action="equals">=</button>
+          </div>
+
+          <div class="calculator-footer">
+            <span><span class="keyboard-hint">↵</span> to calculate</span>
+            <button class="angle-button" id="angle-toggle">Degrees <span>⌄</span></button>
+          </div>
+        </aside>
+
+        <section class="graph-panel">
+          <div class="graph-heading">
+            <div>
+              <p class="eyebrow">SEE THE BIGGER PICTURE</p>
+              <h2>Graph it <span class="sparkle">✳</span></h2>
+            </div>
+            <button class="icon-button graph-menu" id="reset-graph" aria-label="Reset graph view" title="Reset graph view">↻</button>
+          </div>
+
+          <div class="graph-controls">
+            <label class="function-input-wrap" for="function-input">
+              <span class="function-label">y =</span>
+              <input id="function-input" type="text" value="x^2" autocomplete="off" spellcheck="false" aria-label="Function to graph" />
+              <button id="plot-button" class="plot-button">Plot <span>↗</span></button>
+            </label>
+            <div class="graph-hint"><span class="hint-sparkle">✦</span> Try <button class="example-function" data-function="sin(x)">sin(x)</button>, <button class="example-function" data-function="x^3 - 3x">x³ − 3x</button>, or your own</div>
+          </div>
+
+          <div class="graph-card">
+            <div class="graph-legend">
+              <span class="legend-line"></span>
+              <span id="legend-function">y = x²</span>
+              <span class="legend-separator"></span>
+              <span class="legend-range">x ∈ [−10, 10]</span>
+            </div>
+            <div class="canvas-wrap">
+              <canvas id="graph-canvas" aria-label="Graph of the entered function"></canvas>
+              <div class="graph-tooltip" id="graph-tooltip" hidden></div>
+            </div>
+            <div class="graph-axis-label axis-x">x</div>
+            <div class="graph-axis-label axis-y">y</div>
+            <div class="graph-footer">
+              <span id="graph-status"><span class="status-dot"></span> Looking good</span>
+              <div class="zoom-controls" aria-label="Graph zoom controls">
+                <button id="zoom-out" aria-label="Zoom out">−</button>
+                <span id="zoom-label">1×</span>
+                <button id="zoom-in" aria-label="Zoom in">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="tip-card">
+            <span class="tip-icon">✦</span>
+            <div><strong>A little tip</strong><p>Hover over the graph to explore points along your curve.</p></div>
+            <span class="tip-decoration" aria-hidden="true">〰</span>
+          </div>
+        </section>
+      </section>
+
+      <footer class="app-footer">
+        <span>Made for curious minds <span class="heart">♥</span></span>
+        <span class="footer-right">A little color goes a long way <span>✿</span></span>
+      </footer>
+    </main>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
